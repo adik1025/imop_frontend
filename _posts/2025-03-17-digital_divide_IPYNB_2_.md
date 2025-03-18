@@ -78,8 +78,39 @@ Examples
  - Improving digital literacy programs for all age groups.
  - Encouraging government and private sector investments in technology accessibility.
 
-### 
+
+
+### The Digital Divide in San Diego
+ - San Ysidro, about 40% of households lack a wireline broadband subscription (sandiego.gov).
+ - High concentrations of low-income households without broadband are found in City Heights (16%), San Ysidro (17%), National City (18%), and Barrio Logan/Logan Heights (21%) (sandag.org).
+
+### Efforts to Bridge the Divide
+ - Access 4 All Program
+   - Provides free internet access at bus stops, parks, and other locations
+   - Free computer and internet skill-building classes at libraries and other locations
+ - Broadband Master Plan
+   - Increases accessibility and affordability of internet access.
+
+### How to get involved
+ - Ongoing volunteer opportunity [Computer Refurbisher at HandsOn San Diego](https://www.handsonsandiego.org/opportunity/a0C0H00001tH162UAC/computer-refurbisher)
+ - Minimum age 16+
+ - In this volunteer opportunity, volunteers will Lenovo Yoga Laptops and Desktop Computers as well peripherals
+ - Bridges the digital divide, as it targets unreserved communities
+
+### Digital Divide trailer (if time permits):
+
+https://youtu.be/TyOQLGRyKt4
 
 # Popcorn Hack
 
-How would you attempt to fix the digital divide or prevent it from being as prevalent in our community? What are some things that are already being done? what are some things we can add?
+How would you attempt to fix the digital divide or prevent it from being as prevalent in our community? What are some things that are already being done? what are some things we can add? Explain. 
+
+### Example solutions to the Popcorn Hack
+
+ - Free coding bootcamps (e.g., freeCodeCamp)
+ - School programs introducing coding at an early age
+ - Provide affordable or subsidized internet & devices for low-income families
+ - Create peer mentorship programs connecting experienced coders with beginners
+ - Expand local coding workshops in schools and community centers
+
+
