@@ -62,7 +62,7 @@ def binary_search(arr, target):
 # Example usage:
 numbers = [1, 3, 5, 7, 9, 11, 13]
 print(binary_search(numbers, 7))  # Output: 3
-
+```
 
 ## Edge Cases to Consider with Binary Search
 1. **Empty List (`[]`)** → Returns `-1` (nothing to search).  
@@ -95,15 +95,42 @@ print(binary_search(numbers, 7))  # Output: 3
 🔹 **Search Algorithms in Libraries** → Used in Python’s `bisect` module  
 🔹 **Finding Closest Values** → Searching for nearest elements in datasets  
 
-## Popcorn Hacks
-Here are some common problems that can be solved using modified binary search:  
-
-### Complete:
+## Popcorn Hack 1
 
 1. Find First and Last Position of an Element in Sorted Array
 2. Find Peak Element
 3. Find Square Root (without using `sqrt()` function)
 
+<br>
+
+## Popcorn Hack 2
+
+Which of these best describes the approach used by Binary Search?
+
+```
+a) Checking each element sequentially  
+b) Splitting the search space in half each time  
+c) Jumping randomly to different indices  
+d) Sorting the array before searching
+```
+
+What is the worst-case time complexity of Binary Search?
+
+```
+a) O(n)  
+b) O(n log n)  
+c) O(log n)  
+d) O(1)  
+```
+
+Why must the array be sorted before applying Binary Search?
+
+```
+a) To ensure that duplicate values are removed  
+b) So that the middle element can be meaningfully compared  
+c) Because sorting improves the search speed to O(1)  
+d) It is not necessary; Binary Search works on any list
+```
 <br>
 
 ## Homework Hacks
