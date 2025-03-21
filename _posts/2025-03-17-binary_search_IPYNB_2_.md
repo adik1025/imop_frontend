@@ -98,15 +98,22 @@ print(binary_search(numbers, 7))  # Output: 3
 ## Popcorn Hacks
 Here are some common problems that can be solved using modified binary search:  
 
-### Choose 3 of the following to complete:
+### Complete:
 
 1. Find First and Last Position of an Element in Sorted Array
 2. Find Peak Element
 3. Find Square Root (without using `sqrt()` function)
-4. Find Closest Number in a Sorted Array
-5. Find Rotation Count in Rotated Sorted Array  
-6. Find an Element in a Rotated Sorted Array  
-7. Search for a Range of Values (first and last position of a target).  
-8. Median of Two Sorted Arrays (optimized using binary search).  
-9. Finding k-th Smallest Element in two sorted arrays.  
-10. Searching in a Nearly Sorted Array (where elements are at most 1 position away).  
+
+<br>
+
+## Homework Hacks
+
+### Choose 3 of the following to complete:
+
+1. Find Closest Number in a Sorted Array
+2. Find Rotation Count in Rotated Sorted Array  
+3. Find an Element in a Rotated Sorted Array  
+4. Search for a Range of Values (first and last position of a target).  
+5. Median of Two Sorted Arrays (optimized using binary search).  
+6. Finding k-th Smallest Element in two sorted arrays.  
+7. Searching in a Nearly Sorted Array (where elements are at most 1 position away).
