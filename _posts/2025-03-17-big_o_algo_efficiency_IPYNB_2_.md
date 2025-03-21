@@ -121,7 +121,32 @@ generate_permutations(arr)
 
 ## Popcorn Hack #3
 
-Try writing your own code that uses either logarithmic, linearithmic, or factorial time.
+Which of these is inefficient for large inputs?  
+
+```
+a) Linear Time
+b) Factorial Time
+c) Constant Time
+d) Linearithic Time
+```
+
+Which of these can be represented by a nested loop?
+
+```
+a) Logarithmic Time
+b) Linearithmic Time
+c) Quadratic Time
+d) Linear Time
+```
+
+Which of these is typically used by efficient sorting algorithms like Merge Sort or Quick Sort?
+
+```
+a) Linear Time
+b) Quadratic Time
+c) Factorial Time
+d) Linearithmic Time
+```
 
 <hr>
 <br>
