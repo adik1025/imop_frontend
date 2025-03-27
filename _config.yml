@@ -1,9 +1,9 @@
-title: AIBE
-description: "Ansh Kumar is looking for a project on pilot city that is not Poway Chamber of commerce"
+title: IMOP
+description: "An Infrastructure Management Optimization Platform for the City of San Diego."
 owner_name: Aditya Katre
 github_username: adik1025
-github_repo: "aibe_frontend" 
-baseurl: "/aibe_frontend"
+github_repo: "imop_frontend"
+baseurl: "/imop_frontend"
 future: true
 remote_theme: jekyll/minima
 minima:
