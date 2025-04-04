@@ -1,0 +1,113 @@
+---
+layout: post
+title: Titanic Survival Prediction
+permalink: /titanic
+comments: false
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Survival Prediction</title>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>Titanic Survival Prediction</h1>
+        <form id="predictionForm">
+            <label for="pclass">Passenger Class:</label>
+            <select id="pclass" name="pclass">
+                <option value="1">1st Class</option>
+                <option value="2">2nd Class</option>
+                <option value="3">3rd Class</option>
+            </select>
+
+
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+
+            <label for="sibsp">Number of Siblings/Spouses Aboard:</label>
+            <input type="number" id="sibsp" name="sibsp" required>
+
+
+            <label for="parch">Number of Parents/Children Aboard:</label>
+            <input type="number" id="parch" name="parch" required>
+
+
+            <label for="fare">Fare:</label>
+            <input type="number" id="fare" name="fare" required>
+
+
+            <label for="embarked">Port of Embarkation:</label>
+            <select id="embarked" name="embarked">
+                <option value="C">Cherbourg</option>
+                <option value="Q">Queenstown</option>
+                <option value="S">Southampton</option>
+            </select>
+
+
+            <label for="alone">Alone:</label>
+            <select id="alone" name="alone">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+
+
+            <button type="submit">Predict Survival</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script type="module">
+        import { pythonURI } from "{{site.baseurl}}/assets/js/api/config.js";
+        document.getElementById('predictionForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+
+            const formData = new FormData(event.target);
+            const passenger = {
+                pclass: parseInt(formData.get('pclass')),
+                sex: formData.get('sex'),
+                age: parseInt(formData.get('age')),
+                sibsp: parseInt(formData.get('sibsp')),
+                parch: parseInt(formData.get('parch')),
+                fare: parseFloat(formData.get('fare')),
+                embarked: formData.get('embarked'),
+                alone: formData.get('alone') === 'true'
+            };
+
+
+            try {
+                const response = await fetch(`${pythonURI}/api/titanic/predict`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(passenger)
+                });
+               
+                if (response.ok) {
+                    const result = await response.json();
+                    document.getElementById('result').innerHTML = `
+                        <p>Death Probability: ${(result.die * 100).toFixed(2)}%</p>
+                        <p>Survival Probability: ${(result.survive * 100).toFixed(2)}%</p>
+                    `;
+                } else {
+                    document.getElementById('result').innerHTML = `<p>Error: ${response.statusText}</p>`;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
