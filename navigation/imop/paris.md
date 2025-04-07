@@ -3,7 +3,7 @@ layout: post
 title: Paris
 search_exclude: true
 permalink: /travel/Paris
-menu: nav/paris_hotbar.html
+# menu: nav/paris_hotbar.html
 ---
 
 <img src="{{site.baseurl}}/images/eiffel_paris.jpg" height="300" width="250">
