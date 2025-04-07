@@ -18,14 +18,14 @@ Binary Search is a **divide-and-conquer** algorithm that efficiently finds a tar
    - `high = len(arr) - 1` → End of the list.  
 3. **Loop until `low > high`**:  
    - Find the **middle index**:  
-     \[
+     $
      \text{mid} = \frac{\text{low} + \text{high}}{2}
-     \]
+     $
    - Compare the middle element with the target:  
      - If `arr[mid] == target` → **Return the index** (found!).  
      - If `arr[mid] < target` → **Search right half** (update `low = mid + 1`).  
      - If `arr[mid] > target` → **Search left half** (update `high = mid - 1`).  
-4. If the target is not found, return `-1`.  
+4. If the target is not found, return `-1`. 
 
 ---
 
@@ -74,14 +74,15 @@ print(binary_search(numbers, 7))  # Output: 3
 7. **Integer Overflow (in some languages)** → Using `(low + high) // 2` might cause overflow. Use `low + (high - low) // 2`.  
 
 ## Binary Search vs. Linear Search
-| Feature         | Binary Search (`O(log n)`) | Linear Search (`O(n)`) |
-|----------------|--------------------------|----------------------|
-| **Data Requirement** | Must be **sorted** | Can be unsorted |
-| **Speed on Large Data** |  Very Fast |  Slow |
-| **Best Use Case** | Large sorted lists | Small or unsorted lists |
-| **Implementation Complexity** | Slightly complex | Simple |
-| **Worst Case Scenario** | `O(log n)` | `O(n)` |
-| **Memory Usage** | `O(1)` (iterative) or `O(log n)` (recursive) | `O(1)` |
+
+| Feature                  | Binary Search (`O(log n)`)        | Linear Search (`O(n)`)           |
+|--------------------------|-----------------------------------|----------------------------------|
+| **Data Requirement**     | Must be **sorted**                | Can be unsorted                  |
+| **Speed on Large Data**  | Very Fast                         | Slow                             |
+| **Best Use Case**        | Large sorted lists                | Small or unsorted lists          |
+| **Implementation Complexity** | Slightly complex             | Simple                           |
+| **Worst Case Scenario**  | `O(log n)`                        | `O(n)`                           |
+| **Memory Usage**         | `O(1)` (iterative) or `O(log n)` (recursive) | `O(1)`                  |
 
 <img src="{{site.baseurl}}/images/binarysearch.png"/>
 
