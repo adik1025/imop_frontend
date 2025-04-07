@@ -299,6 +299,49 @@ target = target.lower()
 arr = [word.lower() for word in arr]
 ```
 
+<br>
+
+## Popcorn Hack 1
+
+The procedure `BinarySearch(numList, target)` correctly implements a binary search algorithm on the list of numbers `numList`. The procedure returns an index here `target` occurs in `numList`, or `-1` if `target` does not occur in `numList`.
+
+Which of the following conditions must be met in order for the procedure to work as intended? **Explain why.**
+
+```
+a) The length of numList must be even
+b) The list numList must not contain any duplicate values
+c) The values in numList must be in sorted order
+d) The value of target must not be equal to -1
+```
+
+<br>
+
+## Popcorn Hack 2
+
+Which of the following statements correctly describes a disadvantage of binary search compared to linear search? **Explain why.**
+
+```
+a) Binary search takes more time on average than linear search  
+b) Binary search cannot be used on unsorted lists without modifications  
+c) Binary search always returns the first occurrence of the target  
+d) Binary search can only be used on lists with unique values  
+```
+
+<br>
+
+## Popcorn Hack 3
+
+Given the sorted list:
+
+```py
+['a', 'b', 'c', 'd', 'e', 'f', 'g']
+```
+
+Code a binary search algorithm in your notebook that returns the index when given an element of the array (eg. an input of `'c'` should return `2`).
+
+<br>
+
+
 # Binary Search Homework Hack
 ## Dataset
 Use the file: [Dataset](https://drive.google.com/file/d/1RpAQAeRunM8EqNhya0ZLQVI5ThpXcJ9R/view?usp=sharing)
