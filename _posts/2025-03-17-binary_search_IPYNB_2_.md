@@ -8,6 +8,11 @@ comments: True
 
 # Binary Search Algorithms
 
+
+<iframe width="420" height="315"
+src="https://www.youtube.com/watch?v=MFhxShGxHWc">
+</iframe>
+
 ## What is Binary Search?  
 Binary Search is a **divide-and-conquer** algorithm that efficiently finds a target value in a **sorted list** by repeatedly dividing the search space in half.  
 
@@ -18,9 +23,7 @@ Binary Search is a **divide-and-conquer** algorithm that efficiently finds a tar
    - `high = len(arr) - 1` → End of the list.  
 3. **Loop until `low > high`**:  
    - Find the **middle index**:  
-     $
-     \text{mid} = \frac{\text{low} + \text{high}}{2}
-     $
+     - `mid = (low + high)/2`
    - Compare the middle element with the target:  
      - If `arr[mid] == target` → **Return the index** (found!).  
      - If `arr[mid] < target` → **Search right half** (update `low = mid + 1`).  
@@ -30,6 +33,7 @@ Binary Search is a **divide-and-conquer** algorithm that efficiently finds a tar
 ---
 
 ## Time Complexity  
+
 | Case         | Time Complexity |
 |-------------|----------------|
 | **Best Case** | `O(1)` (Found in the first check) |
@@ -295,70 +299,6 @@ target = target.lower()
 arr = [word.lower() for word in arr]
 ```
 
-## Popcorn Hack 1
-
-1. Find First and Last Position of an Element in Sorted Array
-2. Find Peak Element
-3. Find Square Root (without using `sqrt()` function)
-
-<br>
-
-## Popcorn Hack 2
-
-Which of these best describes the approach used by Binary Search?
-
-```
-a) Checking each element sequentially  
-b) Splitting the search space in half each time  
-c) Jumping randomly to different indices  
-d) Sorting the array before searching
-```
-
-What is the worst-case time complexity of Binary Search?
-
-```
-a) O(n)  
-b) O(n log n)  
-c) O(log n)  
-d) O(1)  
-```
-
-Why must the array be sorted before applying Binary Search?
-
-```
-a) To ensure that duplicate values are removed  
-b) So that the middle element can be meaningfully compared  
-c) Because sorting improves the search speed to O(1)  
-d) It is not necessary; Binary Search works on any list
-```
-<br>
-
-## Popcorn Hack 3
-
-Thee procedure `BinarySearch(numList, target)` correctly implements a binary search algorithm on the list of numbers `numList`. The procedure returns an index here `target` occurs in `numList`, or `-1` if `target` does not occur in `numList`.
-
-Which of the following conditions must be met in order for the procedure to work as intended?
-
-```
-a) The length of numList must be even
-b) The list numList must not contain any duplicate values
-c) The values in numList must be in sorted order
-d) The value of target must not be equal to -1
-
-```
-
-## Homework Hacks
-
-### Choose 3 of the following to complete:
-
-1. Find Closest Number in a Sorted Array
-2. Find Rotation Count in Rotated Sorted Array  
-3. Find an Element in a Rotated Sorted Array  
-4. Search for a Range of Values (first and last position of a target).  
-5. Median of Two Sorted Arrays (optimized using binary search).  
-6. Finding k-th Smallest Element in two sorted arrays.  
-7. Searching in a Nearly Sorted Array (where elements are at most 1 position away).
-
 # Binary Search Homework Hack
 ## Dataset
 Use the file: [Dataset](https://drive.google.com/file/d/1RpAQAeRunM8EqNhya0ZLQVI5ThpXcJ9R/view?usp=sharing)
@@ -376,7 +316,8 @@ Use Pandas to load and sort product prices, then write a binary search function 
    - `6.49`
    - `10.00`
 7. Print a message that clearly shows if each price was found or not found.
-8. Use comments to explain your code
+8. Write a short explanation on how your code works.
+
 ---
 ## Code Template
 
