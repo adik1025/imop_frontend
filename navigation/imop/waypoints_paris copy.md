@@ -3,7 +3,7 @@ layout: post
 title: Paris Waypoints
 search_exclude: true
 permalink: /travel/paris/wellness_waypoints
-menu: nav/paris_hotbar.html
+## menu: nav/paris_hotbar.html
 ---
 
 <script src="{{site.baseurl}}/assets/js/api/config.js"></script>
