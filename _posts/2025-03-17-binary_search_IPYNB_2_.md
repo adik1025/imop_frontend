@@ -10,7 +10,7 @@ comments: True
 
 
 <iframe width="420" height="315"
-src="https://www.youtube.com/watch?v=MFhxShGxHWc">
+src="https://www.youtube.com/embed/MFhxShGxHWc">
 </iframe>
 
 ## What is Binary Search?  
