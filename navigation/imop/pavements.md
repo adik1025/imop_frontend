@@ -20,10 +20,10 @@ menu: nav/imop.html
 import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    fetchLikedHotels();
+    fetchPavementData();
 });
 
-async function fetchLikedHotels() {
+async function fetchPavementData() {
     try {
         const response = await fetch(`${pythonURI}/api/pavement`, {...fetchOptions});
 
