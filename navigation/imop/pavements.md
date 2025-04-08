@@ -6,6 +6,9 @@ permalink: /imop/pavements
 menu: nav/imop.html
 ---
 
+<head>
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/pavements.css" />
+</head>
 
 <main class="main-content" id="main-content">
     <div id="pavementCount"></div>
