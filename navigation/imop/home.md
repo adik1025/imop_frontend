@@ -82,11 +82,6 @@ menu: nav/imop.html
 </style>
 <div class="header">SD IMOP</div>
 <div class="container">
-    <div class="sidebar">
-        <button>Map</button>
-        <button>Profile</button>
-        <button>About</button>
-    </div>
     <div class="main">
         <div class="profile-container">
             <img src="bob_the_builder.jpg" alt="Profile Picture">
