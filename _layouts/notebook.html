@@ -2,6 +2,82 @@
 layout: post
 ---
 
-<div class="notebook-content max-w-4xl mx-auto px-6 py-16 text-softText">
-  {{ content }}
-</div>
+
+  <div class="notebook-content prose dark:prose-invert max-w-none">
+    {{ content }}
+  </div>
+
+<style>
+/* Notebook container */
+.notebook-wrapper {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Recolor headers */
+.notebook-content h1 {
+  color: #c084fc;
+  font-weight: 800;
+  font-size: 2.5rem;
+}
+
+.notebook-content h2 {
+  color: #d8b4fe;
+  font-weight: 700;
+  margin-top: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 0.5rem;
+}
+
+/* Code cells */
+.notebook-content div.highlight pre {
+  background-color: #1f2937;
+  color: #e0e0e0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  border-left: 4px solid #8b5cf6;
+  margin-bottom: 2rem;
+  transition: background 0.3s ease;
+}
+
+.notebook-content div.highlight pre:hover {
+  background-color: #374151;
+}
+
+/* Input/Output separation */
+.jp-InputPrompt, .jp-OutputPrompt {
+  display: block;
+  color: #a1a1aa;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Inline code */
+.notebook-content code {
+  background-color: #27272a;
+  color: #a78bfa;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+/* Make lists/paragraphs cleaner */
+.notebook-content p {
+  margin-bottom: 1rem;
+}
+
+.notebook-content ul, .notebook-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Animate */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+</style>
