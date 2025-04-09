@@ -152,7 +152,7 @@ permalink: /travel/paris/wellness_waypoints
 
   document.addEventListener("DOMContentLoaded", () => {
     // Initialize the map
-    map = L.map("map").setView([48.8566, 2.3522], 12); // Default to Paris
+    map = L.map("map").setView([32.7157, -117.1611], 12); // Default to San Diego
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 18,
       attribution: "© OpenStreetMap contributors",
@@ -169,91 +169,91 @@ permalink: /travel/paris/wellness_waypoints
 
   async function FindLocations() {
     const location = document
-      .getElementById("location")
-      .value.trim()
-      .replace(/\s+/g, "+");
+        .getElementById("location")
+        .value.trim()
+        .replace(/\s+/g, "+"); // Clean up spaces in location input
     const place = document
-      .getElementById("place")
-      .value.trim()
-      .replace(/\s+/g, "+");
+        .getElementById("place")
+        .value.trim()
+        .replace(/\s+/g, "+"); // Clean up spaces in place input
 
     if (!place) {
-      alert("Please enter a valid city.");
-      return;
+        alert("Please enter a valid city.");
+        return;
     }
 
     const url = `https://nominatim.openstreetmap.org/search?q=${location}+in+${place}&format=json&addressdetails=1&limit=10`;
 
     try {
-      const response = await fetch(url, {
-        headers: {
-          "User-Agent": "MyWaypointApp/1.0 (contact@example.com)",
-        },
-      });
+        const response = await fetch(url, {
+            headers: {
+                "User-Agent": "MyWaypointApp/1.0 (contact@example.com)",
+            },
+        });
 
-      if (!response.ok) {
-        console.error(`HTTP Error: ${response.status}`);
-        alert(`Failed to fetch data. Status: ${response.status}`);
-        return;
-      }
-
-      const data = await response.json();
-
-      // Clear previous results and markers
-      const resultsTableBody = document.querySelector("#resultsTable tbody");
-      resultsTableBody.innerHTML = ""; // Reset table content
-      map.eachLayer((layer) => {
-        if (layer instanceof L.Marker) {
-          map.removeLayer(layer);
+        if (!response.ok) {
+            console.error(`HTTP Error: ${response.status}`);
+            alert(`Failed to fetch data. Status: ${response.status}`);
+            return;
         }
-      });
 
-      if (data.length === 0) {
-        const noResultsRow = document.createElement("tr");
-        noResultsRow.innerHTML = `<td colspan="4">No locations found. Try a different query.</td>`;
-        resultsTableBody.appendChild(noResultsRow);
-        return;
-      }
+        const data = await response.json();
 
-data.forEach((place, index) => {
-  // Add table row
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>${index + 1}</td>
-    <td>${place.display_name.split(",")[0]}</td>
-    <td>${place.display_name}</td>
-    <td>
-      <button class="like-button" data-title="${place.display_name}">Check In</button>
-    </td>
-  `;
-  resultsTableBody.appendChild(row);
+        // Clear previous results and markers
+        const resultsTableBody = document.querySelector("#resultsTable tbody");
+        resultsTableBody.innerHTML = ""; // Reset table content
+        map.eachLayer((layer) => {
+            if (layer instanceof L.Marker) {
+                map.removeLayer(layer);
+            }
+        });
 
-  // Add marker to the map
-  const marker = L.marker([place.lat, place.lon]).addTo(map);
-  marker.bindPopup(`<b>${place.display_name}</b>`);
-});
+        if (data.length === 0) {
+            const noResultsRow = document.createElement("tr");
+            noResultsRow.innerHTML = `<td colspan="4">No locations found. Try a different query.</td>`;
+            resultsTableBody.appendChild(noResultsRow);
+            return;
+        }
 
-// Add event listeners for like buttons
-document.querySelectorAll(".like-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    if (button.textContent === "Check In"){
-        const title = button.getAttribute("data-title");
-        checkinCareLocation(title);
-        button.textContent = "Checked In"; // Update button icon
-    }
-  });
-});
+        data.forEach((place, index) => {
+            // Add table row
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${place.display_name.split(",")[0]}</td>
+                <td>${place.display_name}</td>
+                <td>
+                    <button class="like-button" data-title="${place.display_name}">Check In</button>
+                </td>
+            `;
+            resultsTableBody.appendChild(row);
 
+            // Add marker to the map
+            const marker = L.marker([place.lat, place.lon]).addTo(map);
+            marker.bindPopup(`<b>${place.display_name}</b>`);
+        });
 
-      // Adjust map view to fit all markers
-      const markers = data.map((place) => [place.lat, place.lon]);
-      const bounds = L.latLngBounds(markers);
-      map.fitBounds(bounds);
+        // Add event listeners for like buttons
+        document.querySelectorAll(".like-button").forEach((button) => {
+            button.addEventListener("click", () => {
+                if (button.textContent === "Check In") {
+                    const title = button.getAttribute("data-title");
+                    checkinCareLocation(title);
+                    button.textContent = "Checked In"; // Update button text
+                }
+            });
+        });
+
+        // Adjust map view to fit all markers
+        const markers = data.map((place) => [place.lat, place.lon]);
+        const bounds = L.latLngBounds(markers);
+        map.fitBounds(bounds);
     } catch (error) {
-      console.error("Error fetching data:", error);
-      alert("An error occurred while fetching data. Please try again later.");
+        console.error("Error fetching data:", error);
+        alert("An error occurred while fetching data. Please try again later.");
     }
-  }
+}
+
 
   function checkinCareLocation(title) {
     const location = document
