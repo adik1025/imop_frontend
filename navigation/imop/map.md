@@ -6,50 +6,6 @@ permalink: /map
 menu: nav/imop.html
 ---
 
-<head>
-  <link rel="stylesheet" href="../../assets/css/travel/waypoints.css" />
-  <style>
-    /* Styling for the calendar and schedule */
-    .schedule-container {
-        margin-top: 20px;
-        padding: 20px;
-        background-color:rgb(60, 60, 62);
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    .schedule-container h3 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-    #scheduleTable {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    #scheduleTable th, #scheduleTable td {
-        padding: 12px;
-        text-align: center;
-        border: 1px solid #ddd;
-    }
-    #scheduleTable th {
-        background-color:rgb(77, 76, 76);
-    }
-    #scheduleTable td {
-        background-color:rgb(145, 142, 142);
-    }
-    .button {
-        padding: 8px 16px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .button:hover {
-        background-color: #45a049;
-    }
-  </style>
-</head>
 
 <div class="form-container">
     <h2>Map of San Diego Locations</h2>
