@@ -7,7 +7,7 @@ hide: true
 menu: nav/home.html
 ---
 
-<div class="relative py-24 px-6 overflow-hidden">
+<div class="relative py-24 px-6 overflow-hidden max-w-6xl mx-auto">
   <!-- Glowing blob background -->
   <div class="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-accent via-purple-800 to-transparent opacity-20 blur-3xl rounded-full animate-pulse-slow pointer-events-none z-0"></div>
 
@@ -21,7 +21,7 @@ menu: nav/home.html
     </p>
     <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4 animate-fade-in">
       <a href="/blogs" class="px-6 py-3 bg-accent text-white font-medium rounded-full shadow-lg hover:bg-white hover:text-accent border border-accent transition duration-300 transform hover:scale-105">
-        Read the Blog 🧠
+        Read the Blogs
       </a>
       <a href="#features" class="px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition">
         Platform Overview →
@@ -59,7 +59,7 @@ menu: nav/home.html
       <h3 class="text-lg font-semibold text-white group-hover:text-accent">Recent Blog Posts</h3>
       <p class="text-gray-400 text-sm">Catch up on new features, dev notes, and case studies.</p>
     </a>
-    <a href="/navigation/blog.html" class="bg-neutralCard border border-white/10 hover:border-accent p-5 rounded-xl transition group">
+    <a href="blogs" class="bg-neutralCard border border-white/10 hover:border-accent p-5 rounded-xl transition group">
       <h3 class="text-lg font-semibold text-white group-hover:text-accent">Archives</h3>
       <p class="text-gray-400 text-sm">Browse older content and historical writeups.</p>
     </a>
