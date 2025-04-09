@@ -141,6 +141,21 @@ print(binary_search(numbers, 7))  # Output: 3
 6. **Duplicate Elements** → Might need modifications to return the first/last occurrence.  
 7. **Integer Overflow (in some languages)** → Using `(low + high) // 2` might cause overflow. Use `low + (high - low) // 2`.  
 
+
+## Popcorn Hack 1 (from CB MC 2020)
+
+The procedure `BinarySearch(numList, target)` correctly implements a binary search algorithm on the list of numbers `numList`. The procedure returns an index here `target` occurs in `numList`, or `-1` if `target` does not occur in `numList`.
+
+Which of the following conditions must be met in order for the procedure to work as intended? **Explain why.**
+
+```
+a) The length of numList must be even
+b) The list numList must not contain any duplicate values
+c) The values in numList must be in sorted order
+d) The value of target must not be equal to -1
+```
+
+
 ## 🔎 Binary Search vs. Linear Search
 
 | Feature                      | Binary Search (`O(log n)`)             | Linear Search (`O(n)`)                    |
@@ -222,6 +237,18 @@ If your data is sorted (or can be sorted using a dataframe like pandas), Binary 
 🔹 **Search Algorithms in Libraries** → Used in Python’s `bisect` module  
 🔹 **Finding Closest Values** → Searching for nearest elements in datasets  
 
+
+## Popcorn Hack 2
+
+Which of the following statements correctly describes a disadvantage of binary search compared to linear search? **Explain why your answer is correct and why the others are wrong.**
+
+```
+a) Binary search takes more time on average than linear search  
+b) Binary search cannot be used on unsorted lists without modifications  
+c) Binary search always returns the first occurrence of the target  
+d) Binary search can only be used on lists with unique values  
+```
+
 ## Binary Search with Strings
 
 Binary search works **just as well with strings** as it does with numbers — **as long as the list is sorted**.
@@ -299,35 +326,6 @@ target = target.lower()
 arr = [word.lower() for word in arr]
 ```
 
-<br>
-
-## Popcorn Hack 1
-
-The procedure `BinarySearch(numList, target)` correctly implements a binary search algorithm on the list of numbers `numList`. The procedure returns an index here `target` occurs in `numList`, or `-1` if `target` does not occur in `numList`.
-
-Which of the following conditions must be met in order for the procedure to work as intended? **Explain why.**
-
-```
-a) The length of numList must be even
-b) The list numList must not contain any duplicate values
-c) The values in numList must be in sorted order
-d) The value of target must not be equal to -1
-```
-
-<br>
-
-## Popcorn Hack 2
-
-Which of the following statements correctly describes a disadvantage of binary search compared to linear search? **Explain why.**
-
-```
-a) Binary search takes more time on average than linear search  
-b) Binary search cannot be used on unsorted lists without modifications  
-c) Binary search always returns the first occurrence of the target  
-d) Binary search can only be used on lists with unique values  
-```
-
-<br>
 
 ## Popcorn Hack 3
 
