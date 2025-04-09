@@ -1,8 +1,9 @@
 ---
-layout: tailwinds
-title: San Diego Waypoints
+layout: tailwind
+title: IMOP San Diego Map
 search_exclude: true
 permalink: /imop/map
+menu: nav/imop.html
 ---
 
 <head>
