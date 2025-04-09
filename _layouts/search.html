@@ -1,19 +1,48 @@
 ---
 layout: page 
 ---
-<div class="home">
-
-<script type="text/javascript" src="{{ '/assets/js/search.js' | relative_url }}"></script>
-<script type="text/javascript" src="{{ '/assets/js/vendor/lunr.min.js' | relative_url }}"></script>
-
-<div class="search">
-    <div class="search-input-wrap">
-    <input type="text" class="js-search-input search-input input-block form-control" tabindex="0" placeholder="Search {{ site.title }}" aria-label="Search {{ site.title }}" autocomplete="off">
+<div class="home py-20 px-6 max-w-6xl mx-auto">
+    <!-- Search Scripts -->
+    <script type="text/javascript" src="{{ '/assets/js/search.js' | relative_url }}"></script>
+    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.min.js' | relative_url }}"></script>
+  
+    <!-- Search Input -->
+    <div class="search relative mb-10">
+      <div class="search-input-wrap">
+        <input type="text" class="js-search-input search-input input-block w-full bg-neutralCard border border-white/10 rounded-xl p-4 text-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Search {{ site.title }}..." aria-label="Search {{ site.title }}" autocomplete="off">
+      </div>
+      <p class="text-sm text-gray-500 mt-2">Start typing to filter 🔍</p>
     </div>
-    <br>
-    <div class="js-search-results search-results-wrap"></div>
-</div>
-
-{%- include post_category_blocks.html -%}
-
-</div>
+  
+    <!-- Search Results (Populated by JS) -->
+    <div class="js-search-results search-results-wrap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Results will be inserted dynamically here via JS -->
+    </div>
+  
+    <!-- Fallback Display for All Posts by Default -->
+    <div id="default-results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for post in site.posts %}
+        <a href="{{ post.url | relative_url }}" class="block bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow group">
+          <h3 class="text-xl font-semibold text-white group-hover:text-accent transition">{{ post.title }}</h3>
+          {% if post.description %}
+            <p class="text-sm text-gray-400 mt-1">{{ post.description }}</p>
+          {% endif %}
+          <p class="text-xs text-gray-500 mt-2 italic">{{ post.date | date: '%b %d, %Y' }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <!-- JavaScript to Toggle Default vs. Filtered Results -->
+  <script>
+    const input = document.querySelector('.js-search-input');
+    const defaultResults = document.getElementById('default-results');
+    const searchResults = document.querySelector('.js-search-results');
+  
+    input.addEventListener('input', () => {
+      const hasValue = input.value.trim().length > 0;
+      defaultResults.style.display = hasValue ? 'none' : 'grid';
+      searchResults.style.display = hasValue ? 'grid' : 'none';
+    });
+  </script>
+  
