@@ -6,32 +6,39 @@ menu: nav/home.html
 search_exclude: true
 show_reading_time: false
 ---
-<div class="profile-container">
- <div class="card">
-   <form>
-     <div>
-       <label for="newUid">Enter New UID:</label>
-       <input type="text" id="newUid" placeholder="New UID">
-     </div>
-     <div>
-       <label for="newName">Enter New Name:</label>
-       <input type="text" id="newName" placeholder="New Name">
-     </div>
+<div class="max-w-4xl mx-auto px-6 py-16 space-y-10">
+  <!-- Title -->
+  <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent via-purple-500 to-white animate-gradient-x">
+    Your Profile Settings
+  </h1>
+
+  <!-- Profile Form -->
+  <div class="bg-neutralCard border border-white/10 p-8 rounded-2xl shadow-xl space-y-6">
+    <div class="grid md:grid-cols-2 gap-6">
       <div>
-       <label for="newPassword">Enter New Password:</label>
-       <input type="text" id="newPassword" placeholder="New Password">
-     </div>
-     <br>
-     <br>
-     <label for="profilePicture" class="file-icon"> Upload Profile Picture <i class="fas fa-upload"></i> <!-- Replace this with your desired icon -->
-     </label>
-     <input type="file" id="profilePicture" accept="image/*" onchange="saveProfilePicture()">
-     <div class="image-container" id="profileImageBox">
-         <!-- Profile picture will be displayed here -->
-     </div>
-     <p id="profile-message" style="color: red;"></p>
-   </form>
- </div>
+        <label for="newUid" class="block text-sm text-gray-400 mb-1">GitHub ID</label>
+        <input type="text" id="newUid" class="w-full bg-neutral-800 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent" placeholder="New UID">
+        <p id="uid-message" class="text-red-400 text-sm mt-1"></p>
+      </div>
+      <div>
+        <label for="newName" class="block text-sm text-gray-400 mb-1">Display Name</label>
+        <input type="text" id="newName" class="w-full bg-neutral-800 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent" placeholder="New Name">
+        <p id="name-message" class="text-red-400 text-sm mt-1"></p>
+      </div>
+    </div>
+    <div>
+      <label for="newPassword" class="block text-sm text-gray-400 mb-1">Password</label>
+      <input type="password" id="newPassword" class="w-full bg-neutral-800 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent" placeholder="New Password">
+      <p id="password-message" class="text-red-400 text-sm mt-1"></p>
+    </div>
+    <div>
+      <label for="profilePicture" class="block text-sm text-gray-400 mb-2">Upload Profile Picture</label>
+      <input type="file" id="profilePicture" accept="image/*" onchange="saveProfilePicture()" class="file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-white hover:file:bg-white hover:file:text-accent transition">
+      <div id="profileImageBox" class="mt-4"></div>
+    </div>
+
+    <p id="profile-message" class="text-red-400 text-sm"></p>
+  </div>
 </div>
 
 <script type="module">

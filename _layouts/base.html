@@ -163,9 +163,16 @@
           </nav>
         </div>
       </div>
-      <div class="text-xs text-gray-500 mt-8">
+      <div class="text-xs text-gray-500 mt-8 space-y-2">
         <p>© 2025 Ansh Kumar</p>
-        <button id="theme-toggle" class="mt-2 text-gray-400 hover:text-white transition">Toggle Dark</button>
+        <button id="theme-toggle" class="text-gray-400 hover:text-white transition">Toggle Dark</button>
+        
+        <!-- Login / User -->
+        <a id="loginArea"
+           href="{{ site.baseurl }}/login"
+           class="block text-gray-400 hover:text-white transition">
+          Login
+        </a>
       </div>
     </aside>
 
@@ -188,6 +195,7 @@
       <a href="blogs" class="block hover:text-white transition">Blog</a>
       <a href="#" class="block hover:text-white transition">Analytics</a>
       <a href="#" class="block hover:text-white transition">Settings</a>
+      <a href="{{ site.baseurl }}/login" class="block hover:text-white transition">Login</a>
     </div>
   </div>
 
