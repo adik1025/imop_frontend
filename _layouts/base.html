@@ -32,13 +32,98 @@
             slideIn: { '0%': { transform: 'translateY(15px)', opacity: 0 }, '100%': { transform: 'translateY(0)', opacity: 1 } },
             gradientX: {
               '0%, 100%': { backgroundPosition: '0% 50%' },
-              '50%': { backgroundPosition: '100% 50%' }
+              '50%': { backgroundPosition: '100% 50%' },
             }
           }
         }
-      }
+      },
     };
   </script>
+
+  <style>
+    /* Notebook-specific global styles */
+    .notebook-content pre {
+      background-color: #111827; /* Tailwind's neutral-900 */
+      color: #ffffff;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem; /* text-sm */
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .notebook-content code {
+      background-color: #1f2937; /* Tailwind's neutral-800 */
+      color: #c084fc; /* Tailwind's purple-300 */
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.85em;
+    }
+
+    /* Inline code (in paragraphs/lists) */
+    .notebook-content p code,
+    .notebook-content li code {
+      background-color: #1f2937;
+      color: #c084fc;
+    }
+
+    /* Headings */
+    .notebook-content h1 {
+      font-size: 2.25rem; /* text-4xl */
+      font-weight: 700;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .notebook-content h2 {
+      font-size: 1.875rem; /* text-3xl */
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 0.5rem;
+    }
+
+    .notebook-content h3 {
+      font-size: 1.5rem; /* text-2xl */
+      font-weight: 500;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Paragraphs & Lists */
+    .notebook-content p {
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .notebook-content ul,
+    .notebook-content ol {
+      padding-left: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .notebook-content ul {
+      list-style-type: disc;
+    }
+
+    .notebook-content ol {
+      list-style-type: decimal;
+    }
+
+    .notebook-content blockquote {
+      border-left: 4px solid #8b5cf6; /* accent */
+      padding-left: 1rem;
+      font-style: italic;
+      color: #a1a1aa;
+      margin-bottom: 1rem;
+    }
+    
+  </style>
 
   <!-- Fonts + Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet" />

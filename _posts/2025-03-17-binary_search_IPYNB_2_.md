@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: notebook
 title: Binary Search
 description: A blog about binary search.
 permalink: /posts/binary-search/

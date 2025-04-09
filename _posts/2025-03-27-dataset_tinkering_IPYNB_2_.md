@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: notebook
 title: Dataset testing
 permalink: /posts/panda-test
 comments: True
