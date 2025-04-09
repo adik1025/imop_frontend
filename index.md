@@ -43,10 +43,10 @@ menu: nav/home.html
       <h3 class="text-lg font-semibold text-white group-hover:text-accent">Blog Posts</h3>
       <p class="text-gray-400 text-sm">Developer writeups, new features, internal research, and data applications.</p>
     </a>
-    <a href="{{site.baseurl}}/blogs" class="bg-neutralCard border border-white/10 hover:border-accent p-5 rounded-xl transition group">
+    <a href="https://github.com/adik1025/imop_frontend/issues/8" class="bg-neutralCard border border-white/10 hover:border-accent p-5 rounded-xl transition group">
       <div class="text-2xl text-accent mb-2"><i class="fas fa-archive"></i></div>
-      <h3 class="text-lg font-semibold text-white group-hover:text-accent">Archive Explorer</h3>
-      <p class="text-gray-400 text-sm">Access historical entries, older logs, and internal experiments.</p>
+      <h3 class="text-lg font-semibold text-white group-hover:text-accent">Project Overview</h3>
+      <p class="text-gray-400 text-sm">Access our plans, delegations, and preliminary writeups.</p>
     </a>
   </div>
 </section>

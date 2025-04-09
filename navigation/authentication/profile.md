@@ -32,7 +32,7 @@ show_reading_time: false
       <p id="password-message" class="text-red-400 text-sm mt-1"></p>
     </div>
     <div>
-      <label for="profilePicture" class="block text-sm text-gray-400 mb-2">Upload Profile Picture:</label>
+      <label for="profilePicture" class="block text-sm text-gray-400 mb-2">Upload Profile Picture</label>
       <input type="file" id="profilePicture" accept="image/*" onchange="saveProfilePicture()" class="file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-white hover:file:bg-white hover:file:text-accent transition">
       <div id="profileImageBox" class="mt-4"></div>
     </div>
