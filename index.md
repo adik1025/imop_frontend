@@ -20,7 +20,7 @@ menu: nav/home.html
       SD IMOP is a next-gen infrastructure platform helping cities like San Diego manage roads, repairs, and resources with precision. It’s fast, data-rich, and optimized for scale.
     </p>
     <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4 animate-fade-in">
-      <a href="/blogs" class="px-6 py-3 bg-accent text-white font-medium rounded-full shadow-lg hover:bg-white hover:text-accent border border-accent transition duration-300 transform hover:scale-105">
+      <a href="{{site.baseurl}}/blogs" class="px-6 py-3 bg-accent text-white font-medium rounded-full shadow-lg hover:bg-white hover:text-accent border border-accent transition duration-300 transform hover:scale-105">
         Read the Blogs
       </a>
       <a href="#features" class="px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition">
@@ -55,11 +55,11 @@ menu: nav/home.html
 <section class="py-20 px-6 max-w-6xl mx-auto">
   <h2 class="text-2xl font-bold text-white mb-8">Jump Into IMOP ⚡</h2>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <a href="/blogs" class="bg-neutralCard border border-white/10 hover:border-accent p-5 rounded-xl transition group">
+    <a href="{{site.baseurl}}/blogs" class="bg-neutralCard border border-white/10 hover:border-accent p-5 rounded-xl transition group">
       <h3 class="text-lg font-semibold text-white group-hover:text-accent">Recent Blog Posts</h3>
       <p class="text-gray-400 text-sm">Catch up on new features, dev notes, and case studies.</p>
     </a>
-    <a href="blogs" class="bg-neutralCard border border-white/10 hover:border-accent p-5 rounded-xl transition group">
+    <a href="{{site.baseurl}}/blogs" class="bg-neutralCard border border-white/10 hover:border-accent p-5 rounded-xl transition group">
       <h3 class="text-lg font-semibold text-white group-hover:text-accent">Archives</h3>
       <p class="text-gray-400 text-sm">Browse older content and historical writeups.</p>
     </a>
