@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: page
 title: SD Districts Viewer 
 search_exclude: false
 permalink: /districts
