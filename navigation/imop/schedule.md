@@ -1,8 +1,8 @@
 ---
-layout: post
-title: schedule
+layout: page
+title:
 search_exclude: true
-permalink: /imop/schedule 
+permalink: /schedule 
 menu: nav/imop.html
 ---
 

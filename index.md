@@ -23,7 +23,7 @@ menu: nav/home.html
       <a href="{{site.baseurl}}/blogs" class="px-6 py-3 bg-accent text-white font-medium rounded-full shadow-lg hover:bg-white hover:text-accent border border-accent transition duration-300 transform hover:scale-105">
         Read the Blogs
       </a>
-      <a href="#features" class="px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition">
+      <a href="#thecore" class="px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition">
         Platform Overview →
       </a>
     </div>
@@ -52,8 +52,8 @@ menu: nav/home.html
 </section>
 
 <!-- Quick links -->
-<section class="py-20 px-6 max-w-6xl mx-auto">
-  <h2 class="text-2xl font-bold text-white mb-8">Jump Into IMOP ⚡</h2>
+<section id="thecore" class="py-20 px-6 max-w-6xl mx-auto">
+  <h2 class="text-2xl font-bold text-white mb-8">Jump Into IMOP</h2>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <a href="{{site.baseurl}}/blogs" class="bg-neutralCard border border-white/10 hover:border-accent p-5 rounded-xl transition group">
       <h3 class="text-lg font-semibold text-white group-hover:text-accent">Recent Blog Posts</h3>
@@ -67,5 +67,41 @@ menu: nav/home.html
       <h3 class="text-lg font-semibold text-white group-hover:text-accent">Platform Features</h3>
       <p class="text-gray-400 text-sm">Explore everything SD IMOP has to offer.</p>
     </a>
+  </div>
+</section>
+
+<!-- Core Modules Section -->
+<section class="py-24 px-6 max-w-6xl mx-auto" id="modules">
+  <div class="relative z-10">
+    <h2 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent via-purple-500 to-white mb-12 animate-gradient-x">
+      Explore the Core of IMOP
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <a href="{{ site.baseurl }}/map" class="group bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow-md">
+        <div class="text-3xl text-accent mb-3"><i class="fas fa-map-marked-alt"></i></div>
+        <h3 class="text-xl font-semibold group-hover:text-accent">Maintenance Map</h3>
+        <p class="text-gray-400 mt-2 text-sm">Interactive map + table of areas needing repair across San Diego. Updated in real-time with backend data.</p>
+      </a>
+      <a href="{{ site.baseurl }}/pavements" class="group bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow-md">
+        <div class="text-3xl text-accent mb-3"><i class="fas fa-file-upload"></i></div>
+        <h3 class="text-xl font-semibold group-hover:text-accent">Data Uploads</h3>
+        <p class="text-gray-400 mt-2 text-sm">Upload your own CSV datasets directly to our backend to track degradation, repair needs, and drive ML predictions.</p>
+      </a>
+      <a href="{{ site.baseurl }}/roads" class="group bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow-md">
+        <div class="text-3xl text-accent mb-3"><i class="fas fa-road"></i></div>
+        <h3 class="text-xl font-semibold group-hover:text-accent">Roads Overview</h3>
+        <p class="text-gray-400 mt-2 text-sm">Browse all roads in San Diego — with live status, repair tags, and direct links to schedule updates.</p>
+      </a>
+      <a href="{{ site.baseurl }}/schedule" class="group bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow-md">
+        <div class="text-3xl text-accent mb-3"><i class="fas fa-calendar-alt"></i></div>
+        <h3 class="text-xl font-semibold group-hover:text-accent">Schedule Planner</h3>
+        <p class="text-gray-400 mt-2 text-sm">Integrated with Google Calendar API — view and coordinate repair dates, city maintenance, and resource planning.</p>
+      </a>
+      <a href="{{ site.baseurl }}/districts" class="group bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow-md">
+        <div class="text-3xl text-accent mb-3"><i class="fas fa-city"></i></div>
+        <h3 class="text-xl font-semibold group-hover:text-accent">District Mapping</h3>
+        <p class="text-gray-400 mt-2 text-sm">Visualize all council districts in San Diego. Identify maintenance priorities per region with geographic overlays.</p>
+      </a>
+    </div>
   </div>
 </section>

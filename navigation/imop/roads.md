@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: page
 title: SD Road Analysis
 search_exclude: false
 permalink: /roads

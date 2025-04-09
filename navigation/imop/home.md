@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: IMOP Home
 search_exclude: true
 permalink: /imop/

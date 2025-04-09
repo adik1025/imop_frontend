@@ -1,8 +1,8 @@
 ---
-layout: tailwind
+layout: page
 title: IMOP San Diego Map
 search_exclude: true
-permalink: /imop/map
+permalink: /map
 menu: nav/imop.html
 ---
 

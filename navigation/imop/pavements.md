@@ -1,8 +1,8 @@
 ---
-layout: post
+layout: page
 title: IMOP Pavement Data
 search_exclude: true
-permalink: /imop/pavements
+permalink: /pavements
 menu: nav/imop.html
 ---
 
