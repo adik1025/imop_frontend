@@ -35,16 +35,15 @@ menu: nav/imop.html
 </head>
 
 <main class="main-content" id="main-content">
+    <h2>Upload CSV File</h2>
+    <input type="file" id="csvFile" accept=".csv" />
+    <button id="saveBtn">Save</button>
+    <div class="status" id="statusMsg"></div>
     <div id="pavementCount"></div>
     <br>
 </main>
-  <h2>Upload CSV File</h2>
-  <input type="file" id="csvFile" accept=".csv" />
-  <button id="saveBtn">Save</button>
-  <div class="status" id="statusMsg"></div>
 
 <script type="module">
-
 import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
 
 const fileInput = document.getElementById('csvFile');
@@ -58,18 +57,12 @@ saveBtn.addEventListener('click', async () => {
         return;
     }
 
-    console.log("SIGMA")
-    console.log(file)
-
     const reader = new FileReader();
 
     reader.onload = async function(event) {
         const csvContent = event.target.result;
-        const lines = csvContent.split('\n'); // Split the content by lines
-        let formattedCsv = lines.join(',,'); // Join lines with double commas
-
-        // Log the formatted CSV string
-        console.log("Formatted CSV String: ", formattedCsv);
+        const lines = csvContent.split('\n');
+        let formattedCsv = lines.join(' | ');
 
         const postData = {
             csv: formattedCsv
@@ -96,7 +89,7 @@ saveBtn.addEventListener('click', async () => {
         statusMsg.textContent = 'Error reading file: ' + error.message;
     };
 
-    reader.readAsText(file); // Read the file content as text
+    reader.readAsText(file);
 });
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -114,28 +107,87 @@ async function fetchPavementData() {
         const data = await response.json();
         var pavementCount = data.length || 0;
 
-        document.getElementById('pavementCount').innerHTML = `<h2>There are ${pavementCount} assessments of pavements in SD.</h2>`;
+        document.getElementById('pavementCount').innerHTML = `<h2 class="count-heading">There are ${pavementCount} assessments of pavements in SD.</h2>`;
 
         const body = document.getElementById('main-content');
 
         data.forEach(item => {
             const card = document.createElement('div');
             card.className = 'card';
-            const fetched_csv = item.cell;
-            const csv_arr = JSON.stringify(fetched_csv.split(',,'));
 
-            csv_arr.forEach(str => {
+            const cardHeader = document.createElement('div');
+            cardHeader.className = 'card-header';
+            cardHeader.innerHTML = `<h3 class="card-title">Pavement ID: ${item.id}</h3>`;
+            card.appendChild(cardHeader);
+
+            const fetched_csv = item.cell;
+            const csv_arr = fetched_csv.split(',,');
+
+            const linesToShow = 10;
+            const linesDisplayed = csv_arr.slice(0, linesToShow);
+
+            linesDisplayed.forEach(str => {
                 const row = document.createElement('div');
-                row.innerHTML = `
-                    <p>${csv_arr}</p>
-                `
-                card.appendChild(csv_arr);
+                row.className = 'csv-row';
+                row.innerHTML = `<p>${str.replace(/,,/g, ' | ')}</p>`;
+                card.appendChild(row);
             });
+
+            if (csv_arr.length > linesToShow) {
+                const moreIndicator = document.createElement('div');
+                moreIndicator.className = 'more-indicator';
+                moreIndicator.innerHTML = '<p class="truncate-text">Data has been truncated</p>';
+                card.appendChild(moreIndicator);
+
+                const downloadButton = document.createElement('button');
+                downloadButton.className = 'btn download-btn';
+                downloadButton.textContent = 'Download Full CSV';
+                downloadButton.onclick = function() {
+                    const blob = new Blob([fetched_csv], { type: 'text/csv' });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'pavement_data.csv';
+                    link.click();
+                };
+                card.appendChild(downloadButton);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn delete-btn';
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function() {
+                    deleteItem(item.id);
+                };
+                card.appendChild(deleteButton);
+            }
 
             body.appendChild(card);
         });
     } catch (error) {
         console.error('Error fetching data:', error);
+    }
+}
+
+async function deleteItem(id) {
+    const deleteData = {
+        id: id,
+    };
+
+    try {
+        const response = await fetch(`${pythonURI}/api/pavement`, {
+            ...fetchOptions,
+            method: 'DELETE',
+            body: JSON.stringify(deleteData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Delete response:', data);
+    } catch (error) {
+        console.error("Error deleting data:", error);
     }
 }
 </script>
