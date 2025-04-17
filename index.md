@@ -75,7 +75,7 @@ menu: nav/home.html
     <a href="{{ site.baseurl }}/schedule" class="group bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow-md">
       <div class="text-3xl text-accent mb-3"><i class="fas fa-calendar-alt"></i></div>
       <h3 class="text-xl font-semibold group-hover:text-accent">Schedule Planner</h3>
-      <p class="text-gray-400 mt-2 text-sm">Synced with Google Calendar. See repair timelines and scheduled maintenance.</p>
+      <p class="text-gray-400 mt-2 text-sm">See repair timelines and scheduled maintenance.</p>
     </a>
     <a href="{{ site.baseurl }}/districts" class="group bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow-md">
       <div class="text-3xl text-accent mb-3"><i class="fas fa-city"></i></div>

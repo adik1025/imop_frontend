@@ -1,175 +1,298 @@
 ---
 layout: page
-title:
-search_exclude: true
-permalink: /schedule 
+title: Schedule
+permalink: /schedule
+show_reading_time: false
 menu: nav/imop.html
+search_exclude: true
 ---
+
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #f4f4f9;
-        }
-
-        .calendar {
-            width: 350px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .calendar-header {
-            background: #007bff;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-            font-size: 1.5em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .calendar-header button {
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1.5em;
-            cursor: pointer;
-        }
-
-        .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            padding: 10px;
-            background: #f8f9fa;
-            font-weight: bold;
-        }
-
-        .calendar-body {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            padding: 10px;
-        }
-
-        .calendar-body div {
-            width: 40px;
-            height: 40px;
-            margin: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            border-radius: 50%;
-            font-size: 0.9em;
-            font-weight: bold;
-            color: #333; /* Set a default dark color for text */
-        }
-
-        .calendar-body div:hover {
-            background: #007bff;
-            color: #ffffff;
-        }
-
-        .calendar-body .today {
-            background: #28a745;
-            color: #ffffff;
-        }
-
-        .calendar-body .disabled {
-            color: #d3d3d3;
-            cursor: not-allowed;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintenance Schedule</title>
 </head>
-<body>
-    <div class="calendar">
-        <div class="calendar-header">
-            <button id="prevMonth">←</button>
-            <h2 id="monthYear"></h2>
-            <button id="nextMonth">→</button>
+<body class="bg-gray-900 text-gray-100">
+  <main class="max-w-5xl mx-auto px-6 py-16" id="main-content">
+    <!-- Title -->
+    <h1 class="text-3xl font-bold text-white mb-8">Manage repair schedule and Calendar</h1>
+    <!-- Event Form -->
+    <div class="bg-gray-800 p-6 rounded-md shadow-lg mb-8">
+      <h2 class="text-2xl font-semibold text-white mb-4">Maintenance Registration Form</h2>
+      <form id="eventForm" class="space-y-4">
+        <div>
+          <label for="clubName" class="block text-sm font-medium text-gray-300 mb-1">WO_ID</label>
+          <input type="text" id="clubName" placeholder="Enter the IAMFLOC (Location)" class="w-full px-4 py-2 text-sm bg-neutral-800 text-gray-300 rounded-md border border-white/10 shadow-inner" required>
         </div>
-        <div class="calendar-days">
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
+        <div>
+          <label for="eventDescription" class="block text-sm font-medium text-gray-300 mb-1">IAMFLOC</label>
+          <input type="text" id="eventDescription" placeholder="Type the WO_ID (Work Order ID)" class="w-full px-4 py-2 text-sm bg-neutral-800 text-gray-300 rounded-md border border-white/10 shadow-inner" required>
         </div>
-        <div class="calendar-body" id="calendarDays"></div>
+        <div>
+          <label for="eventDate" class="block text-sm font-medium text-gray-300 mb-1">Schedule Date</label>
+          <input type="date" id="eventDate" class="w-full px-4 py-2 text-sm bg-neutral-800 text-gray-300 rounded-md border border-white/10 shadow-inner" required>
+        </div>
+        <button type="submit" id="submitBtn" class="bg-accent hover:bg-purple-600 text-white font-medium px-6 py-2 rounded-md transition shadow-md">Schedule</button>
+      </form>
     </div>
 
-    <script>
-        const calendarDays = document.getElementById('calendarDays');
-        const monthYear = document.getElementById('monthYear');
-        const prevMonth = document.getElementById('prevMonth');
-        const nextMonth = document.getElementById('nextMonth');
 
-        let currentDate = new Date();
+    <!-- Event List -->
+    <div id="eventListContainer" class="bg-gray-800 p-6 rounded-md shadow-lg mb-8">
+      <h2 class="text-2xl font-semibold text-white mb-4">Maintenance List</h2>
+      <div id="events" class="space-y-4">
+        <!-- New events will appear here -->
+      </div>
+    </div>
 
-        function renderCalendar() {
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            const firstDay = new Date(year, month, 1).getDay();
-            const lastDate = new Date(year, month + 1, 0).getDate();
 
-            // Set header
-            monthYear.innerText = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+    <!-- Calendar -->
+    <div class="bg-gray-800 p-6 rounded-md shadow-lg">
+      <h2 class="text-2xl font-semibold text-white mb-4">Calendar</h2>
+      <div class="flex items-center justify-between mb-6">
+        <button id="prevMonthBtn" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-1 px-3 rounded-md">Previous</button>
+        <span id="currentMonth" class="text-lg font-bold text-white"></span>
+        <button id="nextMonthBtn" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-1 px-3 rounded-md">Next</button>
+      </div>
+      <div id="calendar" class="grid grid-cols-7 gap-2 bg-gray-700 p-5 rounded-md"></div>
+      <div id="eventDetails" class="mt-6">
+        <h3 class="text-lg font-medium text-white mb-2">Maintenance on <span id="selectedDate" class="font-semibold"></span></h3>
+        <div id="eventsOnDate" class="space-y-2">
+          <!-- Selected date events will appear here -->
+        </div>
+      </div>
+    </div>
+  </main>
 
-            // Clear previous days
-            calendarDays.innerHTML = '';
 
-            // Add empty spaces before the first day
-            for (let i = 0; i < firstDay; i++) {
-                const emptyDiv = document.createElement('div');
-                emptyDiv.classList.add('disabled');
-                calendarDays.appendChild(emptyDiv);
+  <script type="module">
+    import { pythonURI } from "{{site.baseurl}}/assets/js/api/config.js";
+
+
+    let events = [];
+    let currentYear = new Date().getFullYear();
+    let currentMonth = new Date().getMonth();
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const eventForm = document.getElementById('eventForm');
+      const calendar = document.getElementById('calendar');
+      const selectedDateText = document.getElementById('selectedDate');
+      const eventsOnDate = document.getElementById('eventsOnDate');
+      const prevMonthBtn = document.getElementById('prevMonthBtn');
+      const nextMonthBtn = document.getElementById('nextMonthBtn');
+      const currentMonthText = document.getElementById('currentMonth');
+
+
+      eventForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const clubName = document.getElementById('clubName').value.trim();
+        const eventDescription = document.getElementById('eventDescription').value.trim();
+        const eventDate = document.getElementById('eventDate').value;
+
+
+        if (clubName && eventDescription && eventDate) {
+          const payload = {
+            title: clubName,
+            description: eventDescription,
+            date: eventDate,
+          };
+          try {
+            await fetch(`${pythonURI}/api/event`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+            await fetchAndDisplayEvents();
+            alert('Maintenance has been scheduled!');
+          } catch (error) {
+            alert(`Failed to schedule maintenance: ${error.message}`);
+          }
+        } else {
+          alert('Please fill out all fields!');
+        }
+      });
+
+
+      async function fetchAndDisplayEvents() {
+        try {
+          const response = await fetch(`${pythonURI}/api/event`, { method: 'GET' });
+          events = await response.json();
+          renderEventList();
+          initializeCalendar(currentYear, currentMonth);
+        } catch (error) {
+          alert(`Failed to fetch events: ${error.message}`);
+        }
+      }
+
+
+      function renderEventList() {
+        const eventList = document.getElementById('events');
+        eventList.innerHTML = ''; // Clear existing events
+
+
+        events.forEach(event => {
+          const eventBox = document.createElement('div');
+          eventBox.classList.add('bg-gray-700', 'p-4', 'rounded-md', 'shadow-md', 'space-y-2');
+          eventBox.innerHTML = `
+            <p class="text-sm text-gray-300"><strong>WO_ID:</strong> ${event.title}</p>
+            <p class="text-sm text-gray-300"><strong>IAMFLOC:</strong> ${event.description}</p>
+            <p class="text-sm text-gray-300"><strong>Date:</strong> ${event.date}</p>
+          `;
+
+
+          const deleteBtn = document.createElement('button');
+          deleteBtn.classList.add('bg-accent', 'hover:bg-purple-600', 'text-white', 'font-medium', 'px-4', 'py-2', 'rounded-md');
+          deleteBtn.textContent = 'Delete';
+          deleteBtn.addEventListener('click', async () => {
+            const confirmed = confirm('Are you sure you want to cancel this maintenance?');
+            if (confirmed) {
+              await deleteEvent(event.id);
             }
+          });
 
-            // Add days
-            for (let day = 1; day <= lastDate; day++) {
-                const dayDiv = document.createElement('div');
-                dayDiv.innerText = day;
 
-                const today = new Date();
-                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
-                    dayDiv.classList.add('today');
-                }
+          eventBox.appendChild(deleteBtn);
+          eventList.appendChild(eventBox);
+        });
+      }
 
-                dayDiv.addEventListener('click', () => {
-                    alert(`You selected ${day}/${month + 1}/${year}`);
-                });
 
-                calendarDays.appendChild(dayDiv);
-            }
+      async function deleteEvent(eventId) {
+        try {
+          const response = await fetch(`${pythonURI}/api/event`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({ id: eventId })
+          });
+
+
+          if (response.ok) {
+            alert('Maintenance schedule cancelled!');
+            await fetchAndDisplayEvents(); // Refresh the event list dynamically
+          } else {
+            const error = await response.json();
+            console.error(`Error: ${error.message}`);
+            alert('Failed to cancel the schedule. Please try again.');
+          }
+        } catch (error) {
+          console.error('An error occurred while canceling the schedule:', error);
+          alert('Failed to cancel the event. Please try again.');
+        }
+      }
+
+
+      function initializeCalendar(year, month) {
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        calendar.innerHTML = '';
+
+
+        // Add empty divs for days before the first day of the month
+        for (let i = 0; i < firstDayOfMonth; i++) {
+          const emptyDiv = document.createElement('div');
+          calendar.appendChild(emptyDiv);
         }
 
-        prevMonth.addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendar();
-        });
 
-        nextMonth.addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendar();
-        });
+        // Add days with event indicators
+        for (let day = 1; day <= daysInMonth; day++) {
+          const date = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+          const dayDiv = document.createElement('div');
+          dayDiv.textContent = day;
+          dayDiv.classList.add(
+            'text-center',
+            'bg-gray-600',
+            'hover:bg-gray-500',
+            'text-white',
+            'font-medium',
+            'py-2',
+            'rounded-md',
+            'cursor-pointer'
+          );
 
-        renderCalendar();
-    </script>
+
+          // Check if this day has any events
+          const hasEvents = events.some(event => event.date === date);
+          if (hasEvents) {
+            dayDiv.classList.add('bg-purple-500'); // Highlight the day with a purple background
+          }
+
+
+          dayDiv.addEventListener('click', () => {
+            selectedDateText.textContent = date;
+            showEventsOnDate(date);
+          });
+
+
+          calendar.appendChild(dayDiv);
+        }
+
+
+        currentMonthText.textContent = `${
+          [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+          ][month]
+        } ${year}`;
+      }
+
+
+      function showEventsOnDate(date) {
+        eventsOnDate.innerHTML = '';
+        const eventsOnSelectedDate = events.filter(event => event.date === date);
+        if (eventsOnSelectedDate.length === 0) {
+          eventsOnDate.innerHTML = '<p class="text-white">No maintenance for this date.</p>';
+        } else {
+          eventsOnSelectedDate.forEach(event => {
+            const eventDiv = document.createElement('div');
+            eventDiv.innerHTML = `
+              <p class="text-sm text-gray-300"><strong>WO_ID:</strong>${event.title}</p>
+              <p class="text-sm text-gray-300"><strong>IAMFLOC:</strong> ${event.description}</p>
+            `;
+            eventsOnDate.appendChild(eventDiv);
+          });
+        }
+      }
+
+
+      prevMonthBtn.addEventListener('click', () => {
+        currentMonth -= 1;
+        if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear -= 1;
+        }
+        initializeCalendar(currentYear, currentMonth);
+      });
+
+
+      nextMonthBtn.addEventListener('click', () => {
+        currentMonth += 1;
+        if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear += 1;
+        }
+        initializeCalendar(currentYear, currentMonth);
+      });
+
+
+      fetchAndDisplayEvents();
+    });
+  </script>
 </body>
 </html>
