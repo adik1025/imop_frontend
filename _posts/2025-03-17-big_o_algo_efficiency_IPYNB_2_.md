@@ -66,7 +66,12 @@ for i in arr:
 
 ### Popcorn Hack #2
 
-If this is O(n²), how would O(n³) look like? Write code that outputs items in O(n³) time.
+Given the array of numbers from 1-3 (arr = [1,2,3]). Write a function that prints all the different unique pairs of numbers from the array. For example the output of this array should be:
+(1,2)
+(1,3)
+(2,3)
+
+Addtionally, what time complexity is this code? Write a small explanation. 
 
 ---
 
