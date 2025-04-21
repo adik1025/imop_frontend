@@ -28,43 +28,47 @@ Big O notation is used to describe the efficiency of algorithms in terms of time
 ### O(1) - Constant Time
 ```python
 arr = [1, 2, 3, 4, 5]
-print(arr[2])
+print(arr[2])  # Accessing an element by index takes the same time, no matter the size of the array.
 ```
+
+---
 
 ### O(n) - Linear Time
 ```python
 arr = [1, 2, 3, 4, 5]
 for num in arr:
-    print(num)
+    print(num)  # Iterating through the array takes time proportional to its size.
 ```
 
-<br>
-<hr>
+---
 
 ### Popcorn Hack #1
 
-Make an array of items. Print items from the array in two formats. First, use a format that uses constant time. Next, use a format that uses O(n) time.
+Here’s an array of numbers:  
+```python
+arr = [1, 2, 3, 4, 5]
+```
 
-<hr>
-<br>
+1. Print the third item from the array using **constant time** (O(1)).
+2. Print all the items from the array using **linear time** (O(n)).
+
+---
 
 ### O(n²) - Quadratic Time
 ```python
 arr = [1, 2, 3]
 for i in arr:
     for j in arr:
-        print(i, j)
+        print(i, j)  # Nested loops cause the time to grow quadratically as the input size increases.
 ```
 
-<br>
-<hr>
+---
 
 ### Popcorn Hack #2
 
 If this is O(n²), how would O(n³) look like? Write code that outputs items in O(n³) time.
 
-<hr>
-<br>
+---
 
 ### O(log n) - Logarithmic Time
 ```python
@@ -78,33 +82,10 @@ def binary_search(arr, target):
             left = mid + 1
         else:
             right = mid - 1
-    return -1
+    return -1  # Binary search divides the input in half at each step, making it very efficient.
 ```
 
-### O(n log n) - Linearithmic Time
-```python
-def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr
-    mid = len(arr) // 2
-    left = merge_sort(arr[:mid])
-    right = merge_sort(arr[mid:])
-    return merge(left, right)
-
-def merge(left, right):
-    result = []
-    i = j = 0
-    while i < len(left) and j < len(right):
-        if left[i] < right[j]:
-            result.append(left[i])
-            i += 1
-        else:
-            result.append(right[j])
-            j += 1
-    result.extend(left[i:])
-    result.extend(right[j:])
-    return result
-```
+---
 
 ### O(n!) - Factorial Time
 ```python
@@ -113,13 +94,12 @@ def generate_permutations(arr, path):
         generate_permutations(arr[:i] + arr[i+1:], path + [arr[i]])
 
 arr = [1, 2, 3]
-generate_permutations(arr)
+generate_permutations(arr)  # Generating all permutations grows extremely fast as the input size increases.
 ```
 
-<br>
-<hr>
+---
 
-## Popcorn Hack #3
+### Popcorn Hack #3
 
 Which of these is inefficient for large inputs?  
 
@@ -139,18 +119,22 @@ c) Quadratic Time
 d) Linear Time
 ```
 
-Which of these is typically used by efficient sorting algorithms like Merge Sort or Quick Sort?
+---
 
-```
-a) Linear Time
-b) Quadratic Time
-c) Factorial Time
-d) Linearithmic Time
-```
+## Homework Hack
 
-<hr>
-<br>
+Write a function that takes the following inputs:
+1. An array:  
+   ```python
+   arr = [5, 10, 15, 20, 25]
+   ```
+2. A string representing the time complexity:  
+   `"constant"`, `"linear"`, `"quadratic"`, etc.
 
-## Homework Hacks
+The function should perform operations on the array based on the given time complexity. For example:
+- If the string is `"constant"`, return the first item of the array.
+- If the string is `"linear"`, print all the items in the array.
+- If the string is `"quadratic"`, print all pairs of items in the array.
 
-In your notebook, create a function with two parameters: an array and a string. The string should be either `"constant"`, `"linear"`, `"quadratic"`, etc. to correspond to one of the time complexities. The function should return items from the array through this time complexity.
+
+
