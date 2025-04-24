@@ -23,12 +23,12 @@ search_exclude: true
       <h2 class="text-2xl font-semibold text-white mb-4">Maintenance Registration Form</h2>
       <form id="eventForm" class="space-y-4">
         <div>
-          <label for="clubName" class="block text-sm font-medium text-gray-300 mb-1">WO_ID</label>
-          <input type="text" id="clubName" placeholder="Enter the IAMFLOC (Location)" class="w-full px-4 py-2 text-sm bg-neutral-800 text-gray-300 rounded-md border border-white/10 shadow-inner" required>
+          <label for="clubName" class="block text-sm font-medium text-gray-300 mb-1">Task</label>
+          <input type="text" id="clubName" placeholder="Enter the task name" class="w-full px-4 py-2 text-sm bg-neutral-800 text-gray-300 rounded-md border border-white/10 shadow-inner" required>
         </div>
         <div>
-          <label for="eventDescription" class="block text-sm font-medium text-gray-300 mb-1">IAMFLOC</label>
-          <input type="text" id="eventDescription" placeholder="Type the WO_ID (Work Order ID)" class="w-full px-4 py-2 text-sm bg-neutral-800 text-gray-300 rounded-md border border-white/10 shadow-inner" required>
+          <label for="eventDescription" class="block text-sm font-medium text-gray-300 mb-1">Location / Description</label>
+          <input type="text" id="eventDescription" placeholder="Type the location / description" class="w-full px-4 py-2 text-sm bg-neutral-800 text-gray-300 rounded-md border border-white/10 shadow-inner" required>
         </div>
         <div>
           <label for="eventDate" class="block text-sm font-medium text-gray-300 mb-1">Schedule Date</label>
@@ -137,8 +137,8 @@ search_exclude: true
           const eventBox = document.createElement('div');
           eventBox.classList.add('bg-gray-700', 'p-4', 'rounded-md', 'shadow-md', 'space-y-2');
           eventBox.innerHTML = `
-            <p class="text-sm text-gray-300"><strong>WO_ID:</strong> ${event.title}</p>
-            <p class="text-sm text-gray-300"><strong>IAMFLOC:</strong> ${event.description}</p>
+            <p class="text-sm text-gray-300"><strong>Task:</strong> ${event.title}</p>
+            <p class="text-sm text-gray-300"><strong>Location:</strong> ${event.description}</p>
             <p class="text-sm text-gray-300"><strong>Date:</strong> ${event.date}</p>
           `;
 
@@ -262,8 +262,8 @@ search_exclude: true
           eventsOnSelectedDate.forEach(event => {
             const eventDiv = document.createElement('div');
             eventDiv.innerHTML = `
-              <p class="text-sm text-gray-300"><strong>WO_ID:</strong>${event.title}</p>
-              <p class="text-sm text-gray-300"><strong>IAMFLOC:</strong> ${event.description}</p>
+              <p class="text-sm text-gray-300"><strong>Task:</strong>${event.title}</p>
+              <p class="text-sm text-gray-300"><strong>Location:</strong> ${event.description}</p>
             `;
             eventsOnDate.appendChild(eventDiv);
           });
