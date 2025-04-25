@@ -6,7 +6,6 @@ permalink: /map
 menu: nav/imop.html
 ---
 
-
 <div class="form-container">
     <h2>Map of San Diego Locations</h2>
     <form id="selectionForm">
@@ -18,6 +17,24 @@ menu: nav/imop.html
 
 <!-- Map Section -->
 <div id="map" style="height: 400px; margin-top: 20px; border-radius: 10px;"></div>
+
+<!-- Locations List Section -->
+<div class="locations-container">
+    <h3>Locations Data</h3>
+    <table id="locationsTable">
+        <thead>
+            <tr>
+                <th>Building Name</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Condition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamically populated rows will go here -->
+        </tbody>
+    </table>
+</div>
 
 <div class="schedule-container">
     <h3>Maintenance Schedule</h3>
@@ -72,15 +89,8 @@ menu: nav/imop.html
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script>
-    // Sample data for locations with descriptions in San Diego
-    const locations = [
-        { lat: 32.7157, lon: -117.1611, name: "San Diego City Center", description: "The vibrant downtown area of San Diego." },
-        { lat: 32.7315, lon: -117.1473, name: "Balboa Park", description: "A large urban park with museums and gardens." },
-        { lat: 32.7538, lon: -117.2515, name: "Mission Beach", description: "A popular beach area with a boardwalk." },
-        { lat: 32.7756, lon: -117.1184, name: "Old Town San Diego", description: "A historic area with museums, shops, and restaurants." },
-        { lat: 32.7637, lon: -117.2050, name: "Cabrillo National Monument", description: "A monument offering breathtaking views of the Pacific Ocean." }
-    ];
+<script type="module">
+    import { pythonURI } from "{{site.baseurl}}/assets/js/api/config.js";
 
     // Initialize the map centered on San Diego
     let map;
@@ -91,12 +101,68 @@ menu: nav/imop.html
             attribution: "© OpenStreetMap contributors",
         }).addTo(map);
 
-        // Add the location markers
-        locations.forEach(location => {
-            const marker = L.marker([location.lat, location.lon]).addTo(map);
-            marker.bindPopup(`<b>${location.name}</b><br>${location.description}`);
-        });
+        // Fetch coordinates from the backend and plot them on the map
+        fetchCoordinatesAndUpdate();
     });
+
+    // Function to fetch coordinates and update the map and table
+    async function fetchCoordinatesAndUpdate() {
+        try {
+            const response = await fetch(`${pythonURI}/api/coords`, {
+                method: 'GET',
+                credentials: 'include', // Include credentials for CORS
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch coordinates: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const tableBody = document.querySelector('#locationsTable tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            data.forEach(location => {
+                const { lat, lng, building_name, condition } = location;
+
+                // Add data to the locations table
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${building_name}</td>
+                    <td>${lat}</td>
+                    <td>${lng}</td>
+                    <td>${condition}</td>
+                `;
+                tableBody.appendChild(row);
+
+                // Determine the marker color based on the condition
+                let color;
+                if (condition === 'Good' || condition === 'green') {
+                    color = 'green';
+                } else if (condition === 'Moderate' || condition === 'yellow' || condition === 'Fair') {
+                    color = 'yellow';
+                } else {
+                    color = 'red';
+                }
+
+                // Add a colored circle marker to the map
+                const circleMarker = L.circleMarker([parseFloat(lat), parseFloat(lng)], {
+                    color: color,
+                    fillColor: color,
+                    fillOpacity: 0.7,
+                    radius: 8,
+                }).addTo(map);
+
+                circleMarker.bindPopup(`<b>${building_name}</b><br>Condition: ${condition}`);
+            });
+        } catch (error) {
+            console.error('Error fetching coordinates:', error);
+            alert('Failed to load location data. Please try again later.');
+        }
+    }
 
     // Handle the "Go" button click event
     const goButton = document.getElementById("goButton");
@@ -111,8 +177,9 @@ menu: nav/imop.html
             alert("Currently, only San Diego locations are available.");
         }
     });
+
     function viewTaskDetails(task, description) {
         alert(`Task: ${task}\nDescription: ${description}`);
     }
 </script>
-
+```
