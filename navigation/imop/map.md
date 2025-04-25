@@ -92,6 +92,11 @@ menu: nav/imop.html
 <script type="module">
     import { pythonURI } from "{{site.baseurl}}/assets/js/api/config.js";
 
+    // Leaflet expects this shadow image to be available
+    L.Icon.Default.mergeOptions({
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
+    });
+
     // Initialize the map centered on San Diego
     let map;
     document.addEventListener("DOMContentLoaded", () => {
@@ -138,7 +143,7 @@ menu: nav/imop.html
                 `;
                 tableBody.appendChild(row);
 
-                // Determine the marker color based on the condition
+                // Determine the color based on condition
                 let color;
                 if (condition === 'Good' || condition === 'green') {
                     color = 'green';
@@ -148,19 +153,36 @@ menu: nav/imop.html
                     color = 'red';
                 }
 
-                // Add a colored circle marker to the map
-                const circleMarker = L.circleMarker([parseFloat(lat), parseFloat(lng)], {
-                    color: color,
-                    fillColor: color,
-                    fillOpacity: 0.7,
-                    radius: 8,
-                }).addTo(map);
+                // Create a colored pin icon
+                const icon = L.icon({
+                    iconUrl: getIconUrl(color),
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [0, -41],
+                });
 
-                circleMarker.bindPopup(`<b>${building_name}</b><br>Condition: ${condition}`);
+                // Place marker on the map
+                L.marker([parseFloat(lat), parseFloat(lng)], { icon: icon })
+                    .addTo(map)
+                    .bindPopup(`<b>${building_name}</b><br>Condition: ${condition}`);
             });
         } catch (error) {
             console.error('Error fetching coordinates:', error);
             alert('Failed to load location data. Please try again later.');
+        }
+    }
+
+    // Helper to return marker icon URL based on condition color
+    function getIconUrl(color) {
+        switch (color) {
+            case 'green':
+                return 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png';
+            case 'yellow':
+                return 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png';
+            case 'red':
+                return 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png';
+            default:
+                return 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png';
         }
     }
 
@@ -169,17 +191,18 @@ menu: nav/imop.html
     goButton.addEventListener("click", function(event) {
         event.preventDefault();
         const place = document.getElementById("place").value.trim();
-        
+
         if (place.toLowerCase() === "san diego") {
-            // Reset map view if user searches for "San Diego"
             map.setView([32.7157, -117.1611], 12);
         } else {
             alert("Currently, only San Diego locations are available.");
         }
     });
 
+    // Task detail popup
     function viewTaskDetails(task, description) {
         alert(`Task: ${task}\nDescription: ${description}`);
     }
 </script>
+
 ```
