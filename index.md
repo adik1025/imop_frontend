@@ -26,8 +26,8 @@ menu: nav/home.html
       <a href="{{site.baseurl}}/blogs" class="px-6 py-3 bg-accent text-white font-medium rounded-full shadow-lg hover:bg-white hover:text-accent border border-accent transition duration-300 transform hover:scale-105">
         Read the Blogs
       </a>
-      <a href="#modules" class="px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition">
-        Platform Overview →
+      <a href="{{site.baseurl}}/guide" class="px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition">
+        Quick Start Guide →
       </a>
     </div>
   </div>
