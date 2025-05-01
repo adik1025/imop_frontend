@@ -69,7 +69,7 @@ menu: nav/home.html
     </a>
     <a href="{{ site.baseurl }}/roads" class="group bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow-md">
       <div class="text-3xl text-accent mb-3"><i class="fas fa-road"></i></div>
-      <h3 class="text-xl font-semibold group-hover:text-accent">Roads Overview</h3>
+      <h3 class="text-xl font-semibold group-hover:text-accent">Pavement Assessment Model</h3>
       <p class="text-gray-400 mt-2 text-sm">Browse active roads, tagged work orders, and repair intervals across the network.</p>
     </a>
     <a href="{{ site.baseurl }}/schedule" class="group bg-neutralCard border border-white/10 hover:border-accent p-6 rounded-xl transition-all shadow-md">
