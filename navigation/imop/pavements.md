@@ -1,13 +1,13 @@
 ---
 layout: page
-title: IMOP Pavement Data
+title: IMOP CSV Data Uploader
 search_exclude: true
 permalink: /pavements
 menu: nav/imop.html
 ---
 
 <main class="max-w-5xl mx-auto px-6 py-16" id="main-content">
-  <h1 class="text-3xl font-bold text-white mb-8">Upload Pavement Assessment CSV</h1>
+  <h1 class="text-3xl font-bold text-white mb-8">Upload Assessment CSV</h1>
 
   <!-- File Upload UI -->
   <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center mb-8">
@@ -77,7 +77,7 @@ async function fetchPavementData() {
 
     const data = await response.json();
     const pavementCount = data.length || 0;
-    document.getElementById('pavementCount').innerHTML = `<h2 class="text-white text-2xl font-semibold">There are ${pavementCount} pavement assessments in San Diego.</h2>`;
+    document.getElementById('pavementCount').innerHTML = `<h2 class="text-white text-2xl font-semibold">There are ${pavementCount} assessments in San Diego.</h2>`;
 
     const body = document.getElementById('main-content');
 
@@ -86,7 +86,7 @@ async function fetchPavementData() {
       card.className = 'bg-neutralCard border border-white/10 rounded-xl p-6 mb-6 shadow-md transition hover:border-accent';
 
       const cardHeader = document.createElement('div');
-      cardHeader.innerHTML = `<h3 class="text-lg font-semibold text-accent mb-3">Pavement ID: ${item.id}</h3>`;
+      cardHeader.innerHTML = `<h3 class="text-lg font-semibold text-accent mb-3">Data ID: ${item.id}</h3>`;
       card.appendChild(cardHeader);
 
       const fetched_csv = item.cell;
@@ -104,33 +104,34 @@ async function fetchPavementData() {
         const moreIndicator = document.createElement('div');
         moreIndicator.innerHTML = '<p class="text-xs italic text-gray-500 mt-2">Data has been truncated...</p>';
         card.appendChild(moreIndicator);
-
-        const btnGroup = document.createElement('div');
-        btnGroup.className = 'flex flex-wrap gap-3 mt-4';
-
-        const downloadButton = document.createElement('button');
-        downloadButton.className = 'px-4 py-2 bg-accent text-white rounded-md text-sm font-medium hover:bg-purple-600';
-        downloadButton.textContent = 'Download CSV';
-        downloadButton.onclick = function () {
-          const blob = new Blob([fetched_csv], { type: 'text/csv' });
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'pavement_data.csv';
-          link.click();
-        };
-        btnGroup.appendChild(downloadButton);
-
-        const deleteButton = document.createElement('button');
-        deleteButton.className = 'px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md text-sm font-medium';
-        deleteButton.textContent = 'Delete';
-        deleteButton.onclick = function () {
-          deleteItem(item.id);
-        };
-        btnGroup.appendChild(deleteButton);
-
-        card.appendChild(btnGroup);
       }
+
+      // Always show download and delete buttons
+      const btnGroup = document.createElement('div');
+      btnGroup.className = 'flex flex-wrap gap-3 mt-4';
+
+      const downloadButton = document.createElement('button');
+      downloadButton.className = 'px-4 py-2 bg-accent text-white rounded-md text-sm font-medium hover:bg-purple-600';
+      downloadButton.textContent = 'Download CSV';
+      downloadButton.onclick = function () {
+        const blob = new Blob([fetched_csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'pavement_data.csv';
+        link.click();
+      };
+      btnGroup.appendChild(downloadButton);
+
+      const deleteButton = document.createElement('button');
+      deleteButton.className = 'px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md text-sm font-medium';
+      deleteButton.textContent = 'Delete';
+      deleteButton.onclick = function () {
+        deleteItem(item.id);
+      };
+      btnGroup.appendChild(deleteButton);
+
+      card.appendChild(btnGroup);
 
       body.appendChild(card);
     });
