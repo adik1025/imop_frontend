@@ -111,71 +111,67 @@ menu: nav/imop.html
     });
 
     // Function to fetch coordinates and update the map and table
-async function fetchCoordinatesAndUpdate() {
-    try {
-        const response = await fetch(`${pythonURI}/api/coords`, {
-            method: 'GET',
-            credentials: 'include', // Include credentials for CORS
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error(`Failed to fetch coordinates: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        const tableBody = document.querySelector('#locationsTable tbody');
-        tableBody.innerHTML = ''; // Clear existing rows
-
-        data.forEach(location => {
-            const { lat, lng, building_name } = location;
-
-            // Check if the data contains 'condition' or 'status'
-            const condition = location.condition || location.status || 'Unknown';
-
-            // Add data to the locations table
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${building_name}</td>
-                <td>${lat}</td>
-                <td>${lng}</td>
-                <td>${condition}</td>
-            `;
-            tableBody.appendChild(row);
-
-            // Determine the color based on condition/status
-            let color;
-            if (condition === 'Good' || condition === 'green') {
-                color = 'green';
-            } else if (condition === 'Moderate' || condition === 'yellow' || condition === 'Fair') {
-                color = 'yellow';
-            } else if (condition === 'Poor' || condition === 'red' || condition === 'Open') {
-                color = 'red';
-            } else {
-                color = 'gray'; // Default color for unknown conditions
-            }
-
-            // Create a colored pin icon
-            const icon = L.icon({
-                iconUrl: getIconUrl(color),
-                iconSize: [25, 41],
-                iconAnchor: [12, 41],
-                popupAnchor: [0, -41],
+    async function fetchCoordinatesAndUpdate() {
+        try {
+            const response = await fetch(`${pythonURI}/api/coords`, {
+                method: 'GET',
+                credentials: 'include', // Include credentials for CORS
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
 
-            // Place marker on the map
-            L.marker([parseFloat(lat), parseFloat(lng)], { icon: icon })
-                .addTo(map)
-                .bindPopup(`<b>${building_name}</b><br>Condition: ${condition}`);
-        });
-    } catch (error) {
-        console.error('Error fetching coordinates:', error);
-        alert('Failed to load location data. Please try again later.');
+            if (!response.ok) {
+                throw new Error(`Failed to fetch coordinates: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const tableBody = document.querySelector('#locationsTable tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            data.forEach(location => {
+                const { lat, lng, building_name, condition } = location;
+
+                // Add data to the locations table
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${building_name}</td>
+                    <td>${lat}</td>
+                    <td>${lng}</td>
+                    <td>${condition}</td>
+                `;
+                tableBody.appendChild(row);
+
+                // Determine the color based on condition
+                let color;
+                if (condition === 'Good' || condition === 'green') {
+                    color = 'green';
+                } else if (condition === 'Moderate' || condition === 'yellow' || condition === 'Fair') {
+                    color = 'yellow';
+                } else {
+                    color = 'red';
+                }
+
+                // Create a colored pin icon
+                const icon = L.icon({
+                    iconUrl: getIconUrl(color),
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [0, -41],
+                });
+
+                // Place marker on the map
+                L.marker([parseFloat(lat), parseFloat(lng)], { icon: icon })
+                    .addTo(map)
+                    .bindPopup(`<b>${building_name}</b><br>Condition: ${condition}`);
+            });
+        } catch (error) {
+            console.error('Error fetching coordinates:', error);
+            alert('Failed to load location data. Please try again later.');
+        }
     }
-}
+
     // Helper to return marker icon URL based on condition color
     function getIconUrl(color) {
         switch (color) {
