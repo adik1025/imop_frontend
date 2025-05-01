@@ -74,7 +74,6 @@ permalink: /roads
 <button onclick="submitData()">Submit</button>
 
 <div id="response-container" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px; display: none;">
-  <h3>Server Response</h3>
   <pre id="response-output" style="white-space: pre-wrap;"></pre>
 </div>
 
@@ -107,10 +106,11 @@ permalink: /roads
     })
       .then(response => response.json())
       .then(data => {
-        // Display the response in the frontend
         const responseContainer = document.getElementById('response-container');
         const responseOutput = document.getElementById('response-output');
-        responseOutput.textContent = JSON.stringify(data, null, 2);
+        const predictedClass = data.predicted_class;
+        const probability = data.probabilities[predictedClass];
+        responseOutput.textContent = `Predicted Class: ${predictedClass}\nProbability: ${probability}`;
         responseContainer.style.display = 'block';
       })
       .catch(error => {
